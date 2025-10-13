@@ -128,7 +128,7 @@ _Clean, validated form for adding new members_
 | Technology                                                                                         | Version | Purpose              |
 | -------------------------------------------------------------------------------------------------- | ------- | -------------------- |
 | ![PHP](https://img.shields.io/badge/PHP-777BB4?style=flat&logo=php&logoColor=white)                | 8.2+    | Server-side language |
-| ![Laravel](https://img.shields.io/badge/Laravel-FF2D20?style=flat&logo=laravel&logoColor=white)    | 11.x    | PHP Framework        |
+| ![Laravel](https://img.shields.io/badge/Laravel-FF2D20?style=flat&logo=laravel&logoColor=white)    | 12      | PHP Framework        |
 | ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=mysql&logoColor=white)          | 8.0+    | Database             |
 | ![Composer](https://img.shields.io/badge/Composer-885630?style=flat&logo=composer&logoColor=white) | 2.x     | Dependency Manager   |
 
