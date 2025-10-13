@@ -1,6 +1,6 @@
 <div align="center">
   
-# ⛪ ChurchConnect
+# ⛪ FaithTrack
 
 ### Church Membership Management System
 
@@ -20,30 +20,11 @@ _Connecting Your Church Community_
 
 </div>
 
-## 📋 Table of Contents
-
--   [About](#-about)
--   [Features](#-features)
--   [Screenshots](#-screenshots)
--   [Tech Stack](#-tech-stack)
--   [Requirements](#-requirements)
--   [Installation](#-installation)
--   [Configuration](#-configuration)
--   [Usage](#-usage)
--   [Database Structure](#-database-structure)
--   [API Documentation](#-api-documentation)
--   [Testing](#-testing)
--   [Contributing](#-contributing)
--   [License](#-license)
--   [Support](#-support)
-
----
-
 ## 🌟 About
 
-**ChurchConnect** is a comprehensive church membership management system designed to help churches efficiently manage their members, track demographics, and maintain organized records. Built with modern web technologies, it provides an intuitive interface for church administrators to oversee their congregation.
+**FaithTrack** is a comprehensive church membership management system designed to help churches efficiently manage their members, track demographics, and maintain organized records. Built with modern web technologies, it provides an intuitive interface for church administrators to oversee their congregation.
 
-### Why ChurchConnect?
+### Why FaithTrack?
 
 -   ✅ **Simple & Intuitive** - Easy to use interface for all age groups
 -   ✅ **Comprehensive** - Complete member information management
@@ -74,7 +55,7 @@ _Connecting Your Church Community_
 
 ### 📊 Dashboard Analytics
 
-Real-time statistics and demographics:
+Real-time statistics and charts:
 
 -   **Total Active Members** - Overall congregation size
 -   **Children (0-11 years)** - Track young members
@@ -82,6 +63,8 @@ Real-time statistics and demographics:
 -   **CYAF (31-50 years)** - Christian Young Adult Fellowship
 -   **UCM (51+ Men)** - United Church Men
 -   **CWA (51+ Women)** - Church Women Association
+-   **Bar Graph** - Ministry Group Comparison
+-   **Pie Chart** - Gender Distribution
 
 ### 📝 Member Information Fields
 
