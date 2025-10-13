@@ -14,8 +14,6 @@ _Connecting Your Church Community_
 
 <img src="https://img.icons8.com/color/200/church.png" alt="ChurchConnect Logo" width="200"/>
 
-[Features](#-features) • [Screenshots](#-screenshots) • [Installation](#-installation) • [Tech Stack](#-tech-stack) • [Usage](#-usage) • [Contributing](#-contributing)
-
 ---
 
 </div>
@@ -99,24 +97,29 @@ Real-time statistics and charts:
 
 ## 📸 Screenshots
 
+### Login
+
+![Login](public/images/login.png)
+_Where you will login befor you can see the system_
+
 ### Dashboard
 
-![Dashboard](https://via.placeholder.com/800x450.png?text=Dashboard+Screenshot)
+![Dashboard](public/images/dashboard.png)
 _Real-time analytics showing member demographics and statistics_
 
 ### Members List
 
-![Members List](https://via.placeholder.com/800x450.png?text=Members+List+Screenshot)
-_Comprehensive table view with search and filter options_
+![Members List](public/images/member.png)
+_Comprehensive table view with search_
 
 ### Member Profile
 
-![Member Profile](https://via.placeholder.com/800x450.png?text=Member+Profile+Screenshot)
+![Member Profile](public/images/member_details.png)
 _Detailed member information with organized sections_
 
 ### Add Member Form
 
-![Add Member](https://via.placeholder.com/800x450.png?text=Add+Member+Screenshot)
+![Add Member](public/images/add_member.png)
 _Clean, validated form for adding new members_
 
 ---
