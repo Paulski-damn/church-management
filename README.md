@@ -1,65 +1,181 @@
-<<<<<<< HEAD
-# church-management
-=======
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<div align="center">
+  
+# ⛪ ChurchConnect
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+### Church Membership Management System
 
-## About Laravel
+_Connecting Your Church Community_
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+[![Laravel](https://img.shields.io/badge/Laravel-11.x-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)](https://laravel.com)
+[![PHP](https://img.shields.io/badge/PHP-8.2+-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://php.net)
+[![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](https://mysql.com)
+[![TailwindCSS](https://img.shields.io/badge/Tailwind-3.x-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
+[![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](LICENSE)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+<img src="https://img.icons8.com/color/200/church.png" alt="ChurchConnect Logo" width="200"/>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+[Features](#-features) • [Screenshots](#-screenshots) • [Installation](#-installation) • [Tech Stack](#-tech-stack) • [Usage](#-usage) • [Contributing](#-contributing)
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+</div>
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## 📋 Table of Contents
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+-   [About](#-about)
+-   [Features](#-features)
+-   [Screenshots](#-screenshots)
+-   [Tech Stack](#-tech-stack)
+-   [Requirements](#-requirements)
+-   [Installation](#-installation)
+-   [Configuration](#-configuration)
+-   [Usage](#-usage)
+-   [Database Structure](#-database-structure)
+-   [API Documentation](#-api-documentation)
+-   [Testing](#-testing)
+-   [Contributing](#-contributing)
+-   [License](#-license)
+-   [Support](#-support)
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## 🌟 About
 
-### Premium Partners
+**ChurchConnect** is a comprehensive church membership management system designed to help churches efficiently manage their members, track demographics, and maintain organized records. Built with modern web technologies, it provides an intuitive interface for church administrators to oversee their congregation.
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### Why ChurchConnect?
 
-## Contributing
+-   ✅ **Simple & Intuitive** - Easy to use interface for all age groups
+-   ✅ **Comprehensive** - Complete member information management
+-   ✅ **Secure** - Built-in authentication and authorization
+-   ✅ **Analytics** - Real-time dashboard with demographic insights
+-   ✅ **Responsive** - Works seamlessly on desktop, tablet, and mobile
+-   ✅ **Open Source** - Free to use and customize
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+## ✨ Features
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 🔐 Authentication & Security
 
-## Security Vulnerabilities
+-   Secure login system with Laravel Breeze
+-   Password encryption and protection
+-   Session management
+-   Role-based access control (future enhancement)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 👥 Member Management
 
-## License
+-   **Add Members** - Comprehensive member registration form
+-   **View Members** - Detailed member profiles with complete information
+-   **Edit Members** - Update member information easily
+-   **Delete Members** - Remove inactive members with confirmation
+-   **Search & Filter** - Quickly find members by name or contact
+-   **Active/Inactive Status** - Track member activity status
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
->>>>>>> df66c07 (church-management project)
+### 📊 Dashboard Analytics
+
+Real-time statistics and demographics:
+
+-   **Total Active Members** - Overall congregation size
+-   **Children (0-11 years)** - Track young members
+-   **CYF (12-30 years)** - Christian Youth Fellowship
+-   **CYAF (31-50 years)** - Christian Young Adult Fellowship
+-   **UCM (51+ Men)** - United Church Men
+-   **CWA (51+ Women)** - Church Women Association
+
+### 📝 Member Information Fields
+
+-   Personal Details (First, Middle, Last Name)
+-   Date of Birth (with automatic age calculation)
+-   Gender
+-   Complete Address
+-   Contact Number
+-   Family Information (Father's & Mother's Name)
+-   Membership Date
+-   Active/Inactive Status
+
+### 🎨 User Interface
+
+-   Modern, clean design with Tailwind CSS
+-   Responsive layout for all devices
+-   Intuitive navigation
+-   Professional color-coded categories
+-   Beautiful gradient headers
+-   Icon-based actions
+
+### 📄 Additional Features
+
+-   Member profile viewing with detailed layout
+-   Print-friendly member profiles
+-   Pagination for large member lists
+-   Success/Error notifications
+-   Data validation
+-   Professional footer with contact information
+
+---
+
+## 📸 Screenshots
+
+### Dashboard
+
+![Dashboard](https://via.placeholder.com/800x450.png?text=Dashboard+Screenshot)
+_Real-time analytics showing member demographics and statistics_
+
+### Members List
+
+![Members List](https://via.placeholder.com/800x450.png?text=Members+List+Screenshot)
+_Comprehensive table view with search and filter options_
+
+### Member Profile
+
+![Member Profile](https://via.placeholder.com/800x450.png?text=Member+Profile+Screenshot)
+_Detailed member information with organized sections_
+
+### Add Member Form
+
+![Add Member](https://via.placeholder.com/800x450.png?text=Add+Member+Screenshot)
+_Clean, validated form for adding new members_
+
+---
+
+## 🛠️ Tech Stack
+
+### Backend
+
+| Technology                                                                                         | Version | Purpose              |
+| -------------------------------------------------------------------------------------------------- | ------- | -------------------- |
+| ![PHP](https://img.shields.io/badge/PHP-777BB4?style=flat&logo=php&logoColor=white)                | 8.2+    | Server-side language |
+| ![Laravel](https://img.shields.io/badge/Laravel-FF2D20?style=flat&logo=laravel&logoColor=white)    | 11.x    | PHP Framework        |
+| ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=mysql&logoColor=white)          | 8.0+    | Database             |
+| ![Composer](https://img.shields.io/badge/Composer-885630?style=flat&logo=composer&logoColor=white) | 2.x     | Dependency Manager   |
+
+### Frontend
+
+| Technology                                                                                                | Version | Purpose         |
+| --------------------------------------------------------------------------------------------------------- | ------- | --------------- |
+| ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)                 | 5       | Markup Language |
+| ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)                    | 3       | Styling         |
+| ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)  | ES6+    | Interactivity   |
+| ![TailwindCSS](https://img.shields.io/badge/Tailwind-38B2AC?style=flat&logo=tailwind-css&logoColor=white) | 3.x     | CSS Framework   |
+| ![Blade](https://img.shields.io/badge/Blade-FF2D20?style=flat&logo=laravel&logoColor=white)               | -       | Template Engine |
+| ![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat&logo=vite&logoColor=white)                    | 5.x     | Build Tool      |
+
+### Development Tools
+
+| Tool                                                                                                        | Purpose             |
+| ----------------------------------------------------------------------------------------------------------- | ------------------- |
+| ![Git](https://img.shields.io/badge/Git-F05032?style=flat&logo=git&logoColor=white)                         | Version Control     |
+| ![VSCode](https://img.shields.io/badge/VS%20Code-007ACC?style=flat&logo=visual-studio-code&logoColor=white) | Code Editor         |
+| ![XAMPP](https://img.shields.io/badge/XAMPP-FB7A24?style=flat&logo=xampp&logoColor=white)                   | Local Server        |
+| ![phpMyAdmin](https://img.shields.io/badge/phpMyAdmin-6C78AF?style=flat&logo=phpmyadmin&logoColor=white)    | Database Management |
+
+### Packages & Libraries
+
+```json
+{
+    "laravel/framework": "^11.0",
+    "laravel/breeze": "^2.0",
+    "tailwindcss": "^3.4",
+    "alpinejs": "^3.13"
+}
+```
