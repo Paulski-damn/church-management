@@ -154,14 +154,3 @@ _Clean, validated form for adding new members_
 | ![VSCode](https://img.shields.io/badge/VS%20Code-007ACC?style=flat&logo=visual-studio-code&logoColor=white) | Code Editor         |
 | ![XAMPP](https://img.shields.io/badge/XAMPP-FB7A24?style=flat&logo=xampp&logoColor=white)                   | Local Server        |
 | ![phpMyAdmin](https://img.shields.io/badge/phpMyAdmin-6C78AF?style=flat&logo=phpmyadmin&logoColor=white)    | Database Management |
-
-### Packages & Libraries
-
-```json
-{
-    "laravel/framework": "^11.0",
-    "laravel/breeze": "^2.0",
-    "tailwindcss": "^3.4",
-    "alpinejs": "^3.13"
-}
-```
