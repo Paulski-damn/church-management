@@ -21,7 +21,7 @@ class MemberController extends Controller
             });
         }
 
-        $members = $query->latest()->paginate(15);
+        $members = $query->latest()->paginate(5);
         return view('members.index', compact('members'));
     }
 

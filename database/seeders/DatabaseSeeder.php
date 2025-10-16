@@ -13,11 +13,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
+        // Create admin user for UCCP Magallanes
         User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+            'name' => 'UCCP Magallanes',
+            'email' => 'uccpmagallanes@gmail.com',
+            'password' => bcrypt('Uccpmagallanes'),
         ]);
+
+        // Optionally create additional test users
+        // User::factory(10)->create();
     }
 }

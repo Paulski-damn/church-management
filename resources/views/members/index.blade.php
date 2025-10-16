@@ -191,10 +191,22 @@
                         </table>
                     </div>
 
-                    {{-- Pagination --}}
-                    <div class="mt-4">
-                        {{ $members->links() }}
-                    </div>
+                    @if ($members->hasPages())
+                        <div class="flex justify-end mt-4">
+                            <nav class="flex items-center space-x-1 text-sm">
+                                @foreach ($members->links()->elements[0] as $page => $url)
+                                    @if ($page == $members->currentPage())
+                                        <span
+                                            class="px-3 py-1 bg-gray-800 text-white rounded">{{ $page }}</span>
+                                    @else
+                                        <a href="{{ $url }}"
+                                            class="px-3 py-1 text-gray-700 hover:bg-gray-100 rounded transition">{{ $page }}</a>
+                                    @endif
+                                @endforeach
+                            </nav>
+                        </div>
+                    @endif
+
                 </div>
             </div>
         </div>

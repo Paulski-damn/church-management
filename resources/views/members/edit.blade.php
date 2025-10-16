@@ -10,6 +10,8 @@
     <div class="py-10">
         <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white shadow-xl rounded-2xl overflow-hidden border border-gray-100">
+
+                <!-- Header -->
                 <div class="bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900 p-6">
                     <h3 class="text-2xl font-bold text-white">
                         Editing: {{ $member->first_name }} {{ $member->last_name }}
@@ -19,20 +21,19 @@
                     </p>
                 </div>
 
+                <!-- Form -->
                 <div class="p-8 text-gray-900">
                     <form method="POST" action="{{ route('members.update', $member) }}">
                         @csrf
                         @method('PUT')
 
                         <div class="space-y-10">
-
                             <!-- Personal Information -->
                             <div>
                                 <h4 class="text-lg font-semibold text-gray-700 mb-4 border-b-2 border-indigo-500 pb-2">
                                     🧾 Personal Information
                                 </h4>
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <!-- First Name -->
                                     <div>
                                         <x-input-label for="first_name" value="First Name *" />
                                         <x-text-input id="first_name" type="text" name="first_name"
@@ -40,8 +41,6 @@
                                             required />
                                         <x-input-error :messages="$errors->get('first_name')" />
                                     </div>
-
-                                    <!-- Middle Name -->
                                     <div>
                                         <x-input-label for="middle_name" value="Middle Name" />
                                         <x-text-input id="middle_name" type="text" name="middle_name"
@@ -49,8 +48,6 @@
                                             class="w-full mt-1" />
                                         <x-input-error :messages="$errors->get('middle_name')" />
                                     </div>
-
-                                    <!-- Last Name -->
                                     <div>
                                         <x-input-label for="last_name" value="Last Name *" />
                                         <x-text-input id="last_name" type="text" name="last_name"
@@ -58,8 +55,6 @@
                                             required />
                                         <x-input-error :messages="$errors->get('last_name')" />
                                     </div>
-
-                                    <!-- Birthdate -->
                                     <div>
                                         <x-input-label for="birthdate" value="Birthdate *" />
                                         <x-text-input id="birthdate" type="date" name="birthdate"
@@ -67,8 +62,6 @@
                                             class="w-full mt-1" required />
                                         <x-input-error :messages="$errors->get('birthdate')" />
                                     </div>
-
-                                    <!-- Gender -->
                                     <div>
                                         <x-input-label for="gender" value="Gender *" />
                                         <select id="gender" name="gender"
@@ -100,7 +93,6 @@
                                             class="w-full mt-1" required />
                                         <x-input-error :messages="$errors->get('contact_number')" />
                                     </div>
-
                                     <div class="md:col-span-2">
                                         <x-input-label for="address" value="Address *" />
                                         <textarea id="address" name="address" rows="3"
@@ -124,7 +116,6 @@
                                             class="w-full mt-1" />
                                         <x-input-error :messages="$errors->get('father_name')" />
                                     </div>
-
                                     <div>
                                         <x-input-label for="mother_name" value="Mother's Name" />
                                         <x-text-input id="mother_name" type="text" name="mother_name"
@@ -135,7 +126,7 @@
                                 </div>
                             </div>
 
-                            <!-- Active Status -->
+                            <!-- Status -->
                             <div>
                                 <h4 class="text-lg font-semibold text-gray-700 mb-4 border-b-2 border-indigo-500 pb-2">
                                     ⚙️ Status
@@ -150,19 +141,40 @@
                         </div>
 
                         <!-- Buttons -->
-                        <div class="flex justify-end mt-10 gap-4 border-t pt-6">
+                        <div class="flex justify-between mt-10 gap-4 border-t pt-6">
                             <a href="{{ route('members.index') }}"
                                 class="inline-flex items-center px-4 py-2 bg-gray-200 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-300 transition">
                                 Cancel
                             </a>
-                            <button type="submit"
-                                class="inline-flex items-center px-4 py-2 bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900 text-white text-sm font-medium rounded-lg hover:bg-indigo-700 transition">
-                                Save Changes
-                            </button>
+
+                            <div class="flex gap-2">
+                                <button type="submit"
+                                    class="inline-flex items-center px-4 py-2 bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900 text-white text-sm font-medium rounded-lg hover:bg-indigo-700 transition">
+                                    Save Changes
+                                </button>
+
+                                <!-- Delete Button triggers modal -->
+                                <button type="button" onclick="openModal('deleteMemberModal')"
+                                    class="px-4 py-2 bg-red-600 text-white text-sm font-medium rounded-lg hover:bg-red-700 transition">
+                                    Delete Member
+                                </button>
+                            </div>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Clean Mobile-Friendly Confirmation Modal -->
+    <x-confirmation-modal id="deleteMemberModal" title="Delete Member?"
+        message="Are you sure you want to delete {{ $member->first_name }} {{ $member->last_name }}? This action cannot be undone."
+        confirmAction="document.getElementById('deleteForm').submit()" />
+
+    <!-- Hidden delete form -->
+    <form id="deleteForm" method="POST" action="{{ route('members.destroy', $member) }}">
+        @csrf
+        @method('DELETE')
+    </form>
+
 </x-app-layout>

@@ -1,32 +1,45 @@
 <nav x-data="{ open: false }"
     class="backdrop-blur-md bg-gradient-to-br from-slate-800/90 via-slate-700/90 to-slate-900/90 border-b border-slate-700 text-white shadow-lg">
     <!-- Primary Navigation -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div class="flex justify-between h-16 items-center">
-            <!-- Left Section -->
-            <div class="flex items-center space-x-8">
-                <!-- Logo -->
+            <!-- Left: Logo -->
+            <div class="flex items-center">
                 <a href="{{ route('dashboard') }}" class="flex items-center space-x-2">
                     <x-application-logo
                         class="block h-10 w-auto fill-current text-white transition-transform duration-300 hover:scale-105" />
                     <span class="text-xl font-bold tracking-wide hidden sm:block">FaithTrack</span>
                 </a>
-
-                <!-- Navigation Links -->
-                <div class="hidden sm:flex space-x-6 text-sm font-medium">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')"
-                        class="relative text-gray-300 hover:text-white transition duration-200 after:content-[''] after:absolute after:bottom-[-6px] after:left-0 after:w-0 after:h-[2px] after:bg-white hover:after:w-full after:transition-all after:duration-300">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-
-                    <x-nav-link :href="route('members.index')" :active="request()->routeIs('members.*')"
-                        class="relative text-gray-300 hover:text-white transition duration-200 after:content-[''] after:absolute after:bottom-[-6px] after:left-0 after:w-0 after:h-[2px] after:bg-white hover:after:w-full after:transition-all after:duration-300">
-                        {{ __('Members') }}
-                    </x-nav-link>
-                </div>
             </div>
 
-            <!-- Right Section: Dropdown -->
+            <!-- Center: Navigation Links -->
+            <div
+                class="hidden sm:flex items-center justify-center space-x-6 absolute left-1/2 transform -translate-x-1/2">
+
+                <!-- Dashboard -->
+                <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')"
+                    class="relative px-5 py-2 rounded-full font-medium transition-all duration-300
+        {{ request()->routeIs('dashboard') ? 'bg-gradient-to-r from-gray-700 via-gray-600 to-gray-700 text-white shadow-lg hover:shadow-xl' : 'text-white hover:text-white hover:bg-gray-700/40' }}">
+                    {{ __('Dashboard') }}
+                </x-nav-link>
+
+                <!-- Members -->
+                <x-nav-link :href="route('members.index')" :active="request()->routeIs('members.*')"
+                    class="relative px-5 py-2 rounded-full font-medium transition-all duration-300
+        {{ request()->routeIs('members.*') ? 'bg-gradient-to-r from-gray-700 via-gray-600 to-gray-700 text-white shadow-lg hover:shadow-xl' : 'text-white hover:text-white hover:bg-gray-700/40' }}">
+                    {{ __('Members') }}
+                </x-nav-link>
+
+                <!-- Officers -->
+                <x-nav-link :href="route('officers.index')" :active="request()->routeIs('officers.*')"
+                    class="relative px-5 py-2 rounded-full font-medium transition-all duration-300
+        {{ request()->routeIs('officers.*') ? 'bg-gradient-to-r from-gray-700 via-gray-600 to-gray-700 text-white shadow-lg hover:shadow-xl' : 'text-white hover:text-white hover:bg-gray-700/40' }}">
+                    {{ __('Officers') }}
+                </x-nav-link>
+
+            </div>
+
+            <!-- Right: Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:space-x-6">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
@@ -87,6 +100,11 @@
             <x-responsive-nav-link :href="route('members.index')" :active="request()->routeIs('members.*')"
                 class="block text-gray-300 hover:text-white transition">
                 {{ __('Members') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('officers.index')" :active="request()->routeIs('officers.*')"
+                class="block text-gray-300 hover:text-white transition">
+                {{ __('Officers') }}
             </x-responsive-nav-link>
         </div>
 
