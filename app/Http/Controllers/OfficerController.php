@@ -87,6 +87,12 @@ class OfficerController extends Controller
             ->with('success', 'Officer added successfully!');
     }
 
+    public function show(Officer $officer)
+    {
+
+        return view('officers.partials.show', compact('officer')); // fallback full page if needed
+    }
+
     public function edit(Officer $officer)
     {
         $boards = Board::active()->get();

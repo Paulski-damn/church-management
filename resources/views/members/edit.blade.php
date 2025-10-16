@@ -23,7 +23,7 @@
 
                 <!-- Form -->
                 <div class="p-8 text-gray-900">
-                    <form method="POST" action="{{ route('members.update', $member) }}">
+                    <form id="editForm" method="POST" action="{{ route('members.update', $member) }}">
                         @csrf
                         @method('PUT')
 
@@ -141,22 +141,17 @@
                         </div>
 
                         <!-- Buttons -->
-                        <div class="flex justify-between mt-10 gap-4 border-t pt-6">
+                        <div class="flex justify-end mt-10 gap-4 border-t pt-6">
                             <a href="{{ route('members.index') }}"
                                 class="inline-flex items-center px-4 py-2 bg-gray-200 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-300 transition">
                                 Cancel
                             </a>
 
                             <div class="flex gap-2">
-                                <button type="submit"
+                                <!-- Save Changes Button -->
+                                <button type="button" onclick="openModal('saveChangesModal')"
                                     class="inline-flex items-center px-4 py-2 bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900 text-white text-sm font-medium rounded-lg hover:bg-indigo-700 transition">
                                     Save Changes
-                                </button>
-
-                                <!-- Delete Button triggers modal -->
-                                <button type="button" onclick="openModal('deleteMemberModal')"
-                                    class="px-4 py-2 bg-red-600 text-white text-sm font-medium rounded-lg hover:bg-red-700 transition">
-                                    Delete Member
                                 </button>
                             </div>
                         </div>
@@ -166,15 +161,9 @@
         </div>
     </div>
 
-    <!-- Clean Mobile-Friendly Confirmation Modal -->
-    <x-confirmation-modal id="deleteMemberModal" title="Delete Member?"
-        message="Are you sure you want to delete {{ $member->first_name }} {{ $member->last_name }}? This action cannot be undone."
-        confirmAction="document.getElementById('deleteForm').submit()" />
-
-    <!-- Hidden delete form -->
-    <form id="deleteForm" method="POST" action="{{ route('members.destroy', $member) }}">
-        @csrf
-        @method('DELETE')
-    </form>
+    <!-- 🟦 Save Confirmation Modal -->
+    <x-save-confirmation-modal id="saveChangesModal" title="Save Changes?"
+        message="Are you sure you want to save the updates you made for {{ $member->first_name }} {{ $member->last_name }}?"
+        confirmAction="document.getElementById('editForm').submit()" />
 
 </x-app-layout>

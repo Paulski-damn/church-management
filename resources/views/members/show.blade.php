@@ -159,7 +159,7 @@
                             onsubmit="return confirm('Delete this member?')" class="inline">
                             @csrf
                             @method('DELETE')
-                            <button type="submit"
+                            <button type="button" onclick="openModal('deleteMemberModal')"
                                 class="inline-flex items-center px-4 py-2 bg-red-600 text-white text-sm font-medium rounded-lg hover:bg-red-700 transition">
                                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -173,4 +173,14 @@
             </div>
         </div>
     </div>
+    <!-- Clean Mobile-Friendly Confirmation Modal -->
+    <x-confirmation-modal id="deleteMemberModal" title="Delete Member?"
+        message="Are you sure you want to delete {{ $member->first_name }} {{ $member->last_name }}? This action cannot be undone."
+        confirmAction="document.getElementById('deleteForm').submit()" />
+
+    <!-- Hidden delete form -->
+    <form id="deleteForm" method="POST" action="{{ route('members.destroy', $member) }}">
+        @csrf
+        @method('DELETE')
+    </form>
 </x-app-layout>

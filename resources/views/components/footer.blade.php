@@ -22,13 +22,13 @@
                     </li>
                     <li>
                         <a href="{{ route('members.index') }}" class="text-gray-300 hover:text-white text-sm transition">
-                            Members Directory
+                            Members
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('members.create') }}"
+                        <a href="{{ route('officers.index') }}"
                             class="text-gray-300 hover:text-white text-sm transition">
-                            Add New Member
+                            Officers
                         </a>
                     </li>
                 </ul>
