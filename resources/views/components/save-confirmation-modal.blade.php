@@ -19,7 +19,7 @@
                 Cancel
             </button>
             <button onclick="{{ $confirmAction }}"
-                class="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition">
+                class="px-4 py-2 bg-gray-800 text-white text-sm font-medium rounded-lg hover:bg-gray-600 transition">
                 Confirm
             </button>
         </div>

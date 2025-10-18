@@ -1,14 +1,9 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="flex justify-between items-center">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Members') }}
+            <h2 class="ont-semibold text-2xl text-gray-800 leading-tight flex items-center gap-2">
+                {{ __(' 👥 Members') }}
             </h2>
-
-            <a href="{{ route('members.create') }}"
-                class="inline-flex items-center px-4 py-2 bg-gray-800 text-white text-xs font-semibold rounded-md uppercase tracking-widest hover:bg-gray-700">
-                Add Member
-            </a>
         </div>
     </x-slot>
 
@@ -25,26 +20,29 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
 
-                    {{-- 🔍 Search Bar --}}
-                    <div class="mb-4">
-                        <form method="GET" action="{{ route('members.index') }}" class="flex gap-4 justify-end">
+                    <div class="mb-6 flex justify-between items-center flex-wrap gap-3">
+                        <form method="GET" action="{{ route('members.index') }}" class="flex gap-2">
                             <input type="text" name="search" value="{{ request('search') }}"
                                 placeholder="Search by name or contact..."
-                                class="w-80 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-
+                                class="w-72 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm">
                             <button type="submit"
-                                class="inline-flex items-center px-4 py-2 bg-gray-800 text-white text-xs font-semibold rounded-md uppercase tracking-widest hover:bg-gray-700">
+                                class="inline-flex items-center px-4 py-2 bg-gray-800 text-white text-sm font-semibold rounded-md hover:bg-gray-700 transition">
                                 Search
                             </button>
-
                             @if (request('search'))
                                 <a href="{{ route('members.index') }}"
-                                    class="inline-flex items-center px-4 py-2 bg-gray-300 text-gray-700 text-xs font-semibold rounded-md uppercase tracking-widest hover:bg-gray-400">
+                                    class="inline-flex items-center px-4 py-2 bg-gray-300 text-gray-800 text-sm font-semibold rounded-md hover:bg-gray-400 transition">
                                     Clear
                                 </a>
                             @endif
                         </form>
+
+                        <a href="{{ route('members.create') }}"
+                            class="inline-flex items-center px-4 py-2 bg-gray-800 text-white text-sm font-semibold rounded-md shadow hover:bg-gray-700 transition">
+                            + Add Member
+                        </a>
                     </div>
+
 
                     {{-- 📋 Members Table --}}
                     <div class="overflow-x-auto">

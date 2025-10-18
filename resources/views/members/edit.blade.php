@@ -8,7 +8,7 @@
     </x-slot>
 
     <div class="py-10">
-        <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white shadow-xl rounded-2xl overflow-hidden border border-gray-100">
 
                 <!-- Header -->
