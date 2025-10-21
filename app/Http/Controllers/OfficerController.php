@@ -2,180 +2,70 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Officer;
 use App\Models\Board;
+use App\Models\Officer;
+use App\Http\Requests\StoreOfficerRequest;
+use App\Http\Requests\UpdateOfficerRequest;
+use App\Services\OfficerService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class OfficerController extends Controller
 {
+    protected OfficerService $officerService;
+
+    public function __construct(OfficerService $officerService)
+    {
+        $this->officerService = $officerService;
+    }
+
     public function index(Request $request)
     {
-        $boards = Board::active()->orderBy('display_order')->get();
-        $selectedBoardId = $request->query('board_id') ?? ($boards->first()?->id ?? null);
-
-        // Get selected board or first board
-        $selectedBoard = $selectedBoardId
-            ? Board::findOrFail($selectedBoardId)
-            : $boards->first();
-
-        // Get officers for selected board
-        $officers = $selectedBoard
-            ? $selectedBoard->activeOfficers()->get()
-            : collect();
-
-        return view('officers.index', compact('boards', 'selectedBoard', 'officers'));
+        $data = $this->officerService->getOfficersList($request);
+        return view('officers.index', $data);
     }
 
     public function create(Request $request)
     {
-        $boards = Board::active()->get();
-        $selectedBoardId = $request->query('board_id');
-        $selectedBoard = $selectedBoardId ? Board::findOrFail($selectedBoardId) : null;
-
-        $positions = [
-            'President/Chairperson',
-            'Vice President/Vice Chair',
-            'Secretary',
-            'Treasurer',
-            'Auditor',
-            'Member',
-            'Committee Head',
-            'Director'
-        ];
-
-        $hierarchyLevels = [
-            0 => 'President/Chairperson (Top)',
-            1 => 'Vice President/Vice Chair',
-            2 => 'Secretary/Treasurer',
-            3 => 'Member/Director',
-            4 => 'Committee Head',
-        ];
-
-        return view('officers.create', compact('boards', 'selectedBoard', 'positions', 'hierarchyLevels'));
+        $data = $this->officerService->prepareCreateData($request);
+        return view('officers.create', $data);
     }
 
-    public function store(Request $request)
+    public function store(StoreOfficerRequest $request)
     {
-        $validated = $request->validate([
-            'first_name' => 'required|string|max:255|regex:/^[\pL\s\-]+$/u',
-            'middle_name' => 'nullable|string|max:255|regex:/^[\pL\s\-]+$/u',
-            'last_name' => 'required|string|max:255|regex:/^[\pL\s\-]+$/u',
-            'position' => 'required|string|max:255|regex:/^[\pL\s\-\/]+$/u',
-            'board_id' => 'required|exists:boards,id',
-            'department' => 'nullable|string|max:255',
-            'hierarchy_level' => 'required|integer|min:0|max:4',
-            'bio' => 'nullable|string|max:1000',
-            'email' => 'nullable|email:rfc,dns|max:255',
-            'contact_number' => 'nullable|string|max:20|regex:/^[0-9\+\-\(\)\s]+$/',
-            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'order' => 'nullable|integer|min:0',
-            'term_start' => 'nullable|date',
-            'term_end' => 'nullable|date|after_or_equal:term_start',
-        ]);
+        $this->officerService->storeOfficer($request);
 
-        if ($request->hasFile('photo')) {
-            $photoPath = $request->file('photo')->store('officers', 'public');
-            $validated['photo_path'] = $photoPath;
-        }
-
-        $validated['status'] = 'active';
-        $validated['order'] = $validated['order'] ?? 0;
-        $board = Board::find($validated['board_id']);
-        $validated['department'] = $board->name;
-
-
-        Officer::create($validated);
-
-        return redirect()->route('officers.index', ['board_id' => $validated['board_id']])
+        return redirect()
+            ->route('officers.index', ['board_id' => $request->validated()['board_id']])
             ->with('success', 'Officer added successfully!');
     }
 
     public function show(Officer $officer)
     {
-
-        return view('officers.partials.show', compact('officer')); // fallback full page if needed
+        return view('officers.partials.show', compact('officer'));
     }
 
     public function edit(Officer $officer)
     {
-        $boards = Board::active()->get();
-
-        $positions = [
-            'President/Chairperson',
-            'Vice President/Vice Chair',
-            'Secretary',
-            'Treasurer',
-            'Auditor',
-            'Member',
-            'Committee Head',
-            'Director'
-        ];
-
-        $hierarchyLevels = [
-            0 => 'President/Chairperson (Top)',
-            1 => 'Vice President/Vice Chair',
-            2 => 'Secretary/Treasurer',
-            3 => 'Member/Director',
-            4 => 'Committee Head',
-        ];
-
-        return view('officers.edit', compact('officer', 'boards', 'positions', 'hierarchyLevels'));
+        $data = $this->officerService->prepareEditData($officer);
+        return view('officers.edit', $data);
     }
 
-    public function update(Request $request, Officer $officer)
-{
-    $validated = $request->validate([
-        'first_name'    => 'required|string|max:255',
-        'middle_name'   => 'nullable|string|max:255',
-        'last_name'     => 'required|string|max:255',
-        'position'      => 'required|string|max:255',
-        'board_id'      => 'required|exists:boards,id',
-        'department' => 'nullable|string|max:255',
-        'hierarchy_level'=> 'required|integer|min:0|max:4',
-        'bio'           => 'nullable|string|max:1000',
-        'email'         => 'nullable|email|max:255',
-        'contact_number'=> 'nullable|string|max:20',
-        'photo'         => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        'order'         => 'nullable|integer|min:0',
-        'status'        => 'required|in:active,inactive',
-        'term_start'    => 'nullable|date',
-        'term_end'      => 'nullable|date|after_or_equal:term_start',
-    ]);
+    public function update(UpdateOfficerRequest $request, Officer $officer)
+    {
+        $this->officerService->updateOfficer($request, $officer);
 
-    // Handle new photo upload (replace existing file)
-    if ($request->hasFile('photo')) {
-        if ($officer->photo_path) {
-            Storage::disk('public')->delete($officer->photo_path);
-        }
-        $photoPath = $request->file('photo')->store('officers', 'public');
-        $validated['photo_path'] = $photoPath;
+        return redirect()
+            ->route('officers.index', ['board_id' => $request->validated()['board_id']])
+            ->with('success', 'Officer updated successfully!');
     }
-
-    // Ensure order has a default if not provided
-    $validated['order'] = $validated['order'] ?? $officer->order ?? 0;
-    $board = Board::find($validated['board_id']);
-    $validated['department'] = $board->name;
-
-
-    $officer->update($validated);
-
-    return redirect()->route('officers.index', ['board_id' => $validated['board_id']])
-                     ->with('success', 'Officer updated successfully!');
-}
-
 
     public function destroy(Officer $officer)
     {
-        $boardId = $officer->board_id;
+        $board_id = $officer->board_id;
+        $this->officerService->deleteOfficer($officer);
 
-        if ($officer->photo_path) {
-            Storage::disk('public')->delete($officer->photo_path);
-        }
-
-        $officer->delete();
-
-        return redirect()->route('officers.index', ['board_id' => $boardId])
+        return redirect()
+            ->route('officers.index', ['board_id' => $board_id])
             ->with('success', 'Officer deleted successfully!');
     }
 }
