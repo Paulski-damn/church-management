@@ -150,7 +150,7 @@
                             <div class="flex gap-2">
                                 <!-- Save Changes Button -->
                                 <button type="button" onclick="openModal('saveChangesModal')"
-                                    class="inline-flex items-center px-4 py-2 bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900 text-white text-sm font-medium rounded-lg hover:bg-indigo-700 transition">
+                                    class="inline-flex items-center px-4 py-2 bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900 text-white text-sm font-medium rounded-lg hover:bg-gray-700 transition">
                                     Save Changes
                                 </button>
                             </div>

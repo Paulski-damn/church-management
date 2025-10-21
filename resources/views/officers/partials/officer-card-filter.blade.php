@@ -41,7 +41,7 @@
                 <form id="deleteForm"method="POST" action="{{ route('officers.destroy', $officer) }}">
                     @csrf
                     @method('DELETE')
-                    <button type="button" onclick="openModal('deleteMemberModal')"
+                    <button type="button" onclick="openModal('deleteModal-{{ $officer->id }}')"
                         class="bg-white text-red-600 p-2 rounded-full hover:bg-red-600 hover:text-white transition"
                         onclick="return confirm('Delete this officer?')" title="Delete">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -96,6 +96,6 @@
         </span>
     </div>
 </div>
-<x-confirmation-modal id="deleteMemberModal" title="Delete Member?"
-    message="Are you sure you want to delete {{ $officer->first_name }} {{ $officer->last_name }}? This action cannot be undone."
-    confirmAction="document.getElementById('deleteForm').submit()" />
+<x-confirmation-modal id="deleteModal-{{ $officer->id }}" title="Delete Officer"
+    message="Are you sure you want to delete this officer?"
+    confirmAction="document.getElementById('deleteForm-{{ $officer->id }}').submit()" />

@@ -150,11 +150,11 @@
                             Edit
                         </a>
 
-                        <form action="{{ route('officers.destroy', $officer) }}" method="POST"
-                            onsubmit="return confirm('Delete this officer?')" class="inline">
+                        <form id="deleteForm-{{ $officer->id }}" action="{{ route('officers.destroy', $officer) }}"
+                            method="POST" onsubmit="return confirm('Delete this officer?')" class="inline">
                             @csrf
                             @method('DELETE')
-                            <button type="submit"
+                            <button type="submit" onclick="openModal('deleteModal-{{ $officer->id }}')"
                                 class="inline-flex items-center px-4 py-2 bg-red-600 text-white text-sm font-medium rounded-lg hover:bg-red-700 transition">
                                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

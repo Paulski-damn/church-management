@@ -8,7 +8,7 @@
     </x-slot>
 
     <div class="py-10">
-        <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white shadow-xl rounded-2xl overflow-hidden border border-gray-100">
 
                 <!-- Header -->
@@ -23,7 +23,7 @@
 
                 <!-- Form -->
                 <div class="p-8 text-gray-900">
-                    <form method="POST" action="{{ route('officers.update', $officer) }}"
+                    <form id="editForm" method="POST" action="{{ route('officers.update', $officer) }}"
                         enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
@@ -216,7 +216,7 @@
                             <div class="flex gap-2">
                                 <!-- Save Changes Button -->
                                 <button type="button" onclick="openModal('saveChangesModal')"
-                                    class="inline-flex items-center px-4 py-2 bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900 text-white text-sm font-medium rounded-lg hover:bg-indigo-700 transition">
+                                    class="px-4 py-2 bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900 text-white rounded-lg hover:bg-gray-700">
                                     Save Changes
                                 </button>
                             </div>

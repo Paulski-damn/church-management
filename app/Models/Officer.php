@@ -12,6 +12,7 @@ class Officer extends Model
         'middle_name',
         'last_name',
         'position',
+        'department',
         'board_id',
         'bio',
         'email',

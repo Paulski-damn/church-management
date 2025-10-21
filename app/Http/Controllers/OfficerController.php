@@ -58,15 +58,16 @@ class OfficerController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'first_name' => 'required|string|max:255',
-            'middle_name' => 'nullable|string|max:255',
-            'last_name' => 'required|string|max:255',
-            'position' => 'required|string|max:255',
+            'first_name' => 'required|string|max:255|regex:/^[\pL\s\-]+$/u',
+            'middle_name' => 'nullable|string|max:255|regex:/^[\pL\s\-]+$/u',
+            'last_name' => 'required|string|max:255|regex:/^[\pL\s\-]+$/u',
+            'position' => 'required|string|max:255|regex:/^[\pL\s\-\/]+$/u',
             'board_id' => 'required|exists:boards,id',
+            'department' => 'nullable|string|max:255',
             'hierarchy_level' => 'required|integer|min:0|max:4',
             'bio' => 'nullable|string|max:1000',
-            'email' => 'nullable|email|max:255',
-            'contact_number' => 'nullable|string|max:20',
+            'email' => 'nullable|email:rfc,dns|max:255',
+            'contact_number' => 'nullable|string|max:20|regex:/^[0-9\+\-\(\)\s]+$/',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'order' => 'nullable|integer|min:0',
             'term_start' => 'nullable|date',
@@ -80,6 +81,9 @@ class OfficerController extends Controller
 
         $validated['status'] = 'active';
         $validated['order'] = $validated['order'] ?? 0;
+        $board = Board::find($validated['board_id']);
+        $validated['department'] = $board->name;
+
 
         Officer::create($validated);
 
@@ -120,38 +124,46 @@ class OfficerController extends Controller
     }
 
     public function update(Request $request, Officer $officer)
-    {
-        $validated = $request->validate([
-            'first_name' => 'required|string|max:255',
-            'middle_name' => 'nullable|string|max:255',
-            'last_name' => 'required|string|max:255',
-            'position' => 'required|string|max:255',
-            'board_id' => 'required|exists:boards,id',
-            'hierarchy_level' => 'required|integer|min:0|max:4',
-            'bio' => 'nullable|string|max:1000',
-            'email' => 'nullable|email|max:255',
-            'contact_number' => 'nullable|string|max:20',
-            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'order' => 'nullable|integer|min:0',
-            'status' => 'required|in:active,inactive',
-            'term_start' => 'nullable|date',
-            'term_end' => 'nullable|date|after_or_equal:term_start',
-        ]);
+{
+    $validated = $request->validate([
+        'first_name'    => 'required|string|max:255',
+        'middle_name'   => 'nullable|string|max:255',
+        'last_name'     => 'required|string|max:255',
+        'position'      => 'required|string|max:255',
+        'board_id'      => 'required|exists:boards,id',
+        'department' => 'nullable|string|max:255',
+        'hierarchy_level'=> 'required|integer|min:0|max:4',
+        'bio'           => 'nullable|string|max:1000',
+        'email'         => 'nullable|email|max:255',
+        'contact_number'=> 'nullable|string|max:20',
+        'photo'         => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'order'         => 'nullable|integer|min:0',
+        'status'        => 'required|in:active,inactive',
+        'term_start'    => 'nullable|date',
+        'term_end'      => 'nullable|date|after_or_equal:term_start',
+    ]);
 
-        if ($request->hasFile('photo')) {
-            if ($officer->photo_path) {
-                Storage::disk('public')->delete($officer->photo_path);
-            }
-
-            $photoPath = $request->file('photo')->store('officers', 'public');
-            $validated['photo_path'] = $photoPath;
+    // Handle new photo upload (replace existing file)
+    if ($request->hasFile('photo')) {
+        if ($officer->photo_path) {
+            Storage::disk('public')->delete($officer->photo_path);
         }
-
-        $officer->update($validated);
-
-        return redirect()->route('officers.index', ['board_id' => $validated['board_id']])
-            ->with('success', 'Officer updated successfully!');
+        $photoPath = $request->file('photo')->store('officers', 'public');
+        $validated['photo_path'] = $photoPath;
     }
+
+    // Ensure order has a default if not provided
+    $validated['order'] = $validated['order'] ?? $officer->order ?? 0;
+    $board = Board::find($validated['board_id']);
+    $validated['department'] = $board->name;
+
+
+    $officer->update($validated);
+
+    return redirect()->route('officers.index', ['board_id' => $validated['board_id']])
+                     ->with('success', 'Officer updated successfully!');
+}
+
 
     public function destroy(Officer $officer)
     {
